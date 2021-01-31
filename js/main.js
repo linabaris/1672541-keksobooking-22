@@ -1,4 +1,4 @@
-function getRandomIntegerInclusive (min, max) {
+let getRandomIntegerInclusive = function (min, max) {
   if (min > max || min == max) {
     return 'Неверные значения порогов диапазона!';
   }
