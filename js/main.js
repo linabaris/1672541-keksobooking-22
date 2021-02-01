@@ -1,4 +1,4 @@
-let getRandomIntegerInclusive = function (min, max) {
+const getRandomIntegerInclusive = function (min, max) {
   if (min > max || min == max) {
     return 'error';
   }
@@ -6,7 +6,7 @@ let getRandomIntegerInclusive = function (min, max) {
   return Math.floor(Math.random()*(max - min + 1)) + min;
 }
 
-let getRandomFloatInclusive = function (min, max, symbolNumber) {
+const getRandomFloatInclusive = function (min, max, symbolNumber) {
   if (min > max || min == max) {
     return 'error';
   }
