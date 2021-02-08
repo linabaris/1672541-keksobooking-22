@@ -15,7 +15,6 @@ const LATITUDE_MAX =  35.70000;
 const LONGITUDE_MIN = 139.70000;
 const LONGITUDE_MAX = 139.80000;
 const ACCURACY = 5;
-const OFFERS_COUNT = 10;
 
 const HOUSE_TYPES = [
   'palace',
@@ -96,5 +95,4 @@ const createOffer = function () {
   return ad;
 }
 
-const offersList = new Array(OFFERS_COUNT).fill(null).map(() => createOffer());
-
+createOffer();
