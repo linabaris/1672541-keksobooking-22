@@ -18,7 +18,7 @@ const ACCURACY = 5;
 const OFFERS_COUNT = 10;
 
 const HOUSE_TYPES = [
-  'place',
+  'palace',
   'flat',
   'house',
   'bungalow',
@@ -49,7 +49,7 @@ const getRandomIntegerInclusive = function (min, max) {
 }
 
 const getRandomFloatInclusive = function (min, max, symbolNumber) {
-  let randomFloat = Math.random()*(max - min +1) + min;
+  const randomFloat = Math.random()*(max - min +1) + min;
   return +randomFloat.toFixed(symbolNumber);
 }
 
@@ -57,7 +57,7 @@ const getMixedArr = function (arr) {
   let mixedArr = [];
   const newArrLength = getRandomIntegerInclusive(0, arr.length - 1);
   for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random*(i + 1));
+    const j = Math.floor(Math.random()*(i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
   for (let i = 0; i < newArrLength; i++) {
@@ -81,7 +81,7 @@ const createOffer = function () {
     },
     offer: {
       title: TITLE,
-      adress: `${X},${Y}`,
+      address: `${X},${Y}`,
       price: getRandomIntegerInclusive(PRICE_MIN,PRICE_MAX),
       type: HOUSE_TYPES[getRandomIntegerInclusive(0, HOUSE_TYPES.length-1)],
       rooms: getRandomIntegerInclusive(ROMMS_NUMBER_MIN, ROOMS_NUMBER_MAX),
@@ -98,4 +98,3 @@ const createOffer = function () {
 
 const offersList = new Array(OFFERS_COUNT).fill(null).map(() => createOffer());
 
-offersList;
