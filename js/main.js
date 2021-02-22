@@ -1,5 +1,6 @@
-import {
-  createOffer
-} from './data.js'
+import {createofferCard} from './popup.js'
+import {similarOffers} from './data.js'
 
-createOffer();
+const offersListElement = document.querySelector('.map__canvas');
+
+offersListElement.appendChild(createofferCard(similarOffers[0]));
