@@ -1,5 +1,13 @@
-import {
-  createOffer
-} from './data.js'
+/* global L:readonly */
+import {disableForm, enableForm} from './form.js'
+import { fillMap } from './map.js';
 
-createOffer();
+disableForm();
+
+const map = L.map('map-canvas')
+  .on('load', () => {enableForm()} )
+  .setView ({
+    lat: 35.68950,
+    lng: 139.69171,
+  }, 13);
+fillMap(map);

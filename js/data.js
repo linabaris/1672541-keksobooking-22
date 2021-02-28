@@ -19,6 +19,7 @@ const LATITUDE_MAX =  35.70000;
 const LONGITUDE_MIN = 139.70000;
 const LONGITUDE_MAX = 139.80000;
 const ACCURACY = 5;
+const OFFERS_COUNT = 10;
 
 const HOUSE_TYPES = [
   'palace',
@@ -51,11 +52,7 @@ const createOffer = function () {
   const Y = getRandomFloatInclusive(LONGITUDE_MIN, LONGITUDE_MAX, ACCURACY);
   const ad = {
     author: {
-      avatar: `img/avatar/user0${getRandomIntegerInclusive(USER_NUMBER_MIN, USER_NUMBER_MAX)}.png`,
-    },
-    location: {
-      x: X,
-      y: Y,
+      avatar: `img/avatars/user0${getRandomIntegerInclusive(USER_NUMBER_MIN, USER_NUMBER_MAX)}.png`,
     },
     offer: {
       title: TITLE,
@@ -70,10 +67,17 @@ const createOffer = function () {
       description: HOUSE_DESCRIPTION,
       photos: getMixedArr(HOUSE_PHOTOS),
     },
+    location: {
+      x: X,
+      y: Y,
+    },
   }
   return ad;
 }
 
+const similarOffers = new Array(OFFERS_COUNT).fill(null).map(() => createOffer());
+
 export {
-  createOffer
+  similarOffers,
+  ACCURACY
 }
