@@ -1,6 +1,6 @@
-const offersTemplate = document.querySelector('#card').contents;
+const offersTemplate = document.querySelector('#card').content;
 
-const cardElement = offersTemplate.cloneNode(true).content;
+const cardElement = offersTemplate.cloneNode(true);
 
 const titlePopup = cardElement.querySelector('.popup__title');
 const addressPopup = cardElement.querySelector('.popup__text--address');
@@ -27,36 +27,44 @@ const redefineType = function (type) {
 const genFeatures = function (arrFeatures) {
   const featuresPopup = cardElement.querySelector('.popup__features');
   featuresPopup.innerHTML = '';
-
-  arrFeatures.forEach ((elem) => {
-    const newFeature = document.createElement('li');
-    newFeature.className = `popup__feature popup__feature--${elem}`;
-    featuresPopup.appendChild(newFeature);
-  })
-  return featuresPopup;
+  
+  if (arrFeatures.length === 0) {
+    featuresPopup.classList.add('visvisually-hidden');
+  } else {
+    arrFeatures.forEach ((elem) => {
+      const newFeature = document.createElement('li');
+      newFeature.className = `popup__feature popup__feature--${elem}`;
+      featuresPopup.appendChild(newFeature);
+    })
+    return featuresPopup;
+  }
 }
 
 const genPhotos = function (arrPhotos) {
   const photosPopup = cardElement.querySelector('.popup__photos');
   photosPopup.innerHTML = '';
-
-  arrPhotos.forEach ((elem) => {
-    const newPhoto = document.createElement('img');
-    newPhoto.className = 'popup__photo';
-    newPhoto.src = elem;
-    newPhoto.width = '45';
-    newPhoto.height = '45';
-    newPhoto.alt = 'Фотография жилья';
-    photosPopup.appendChild(newPhoto);
-  })
-  return photosPopup;
+  
+  if (arrPhotos.length === 0) {
+    photosPopup.classList.add('visually-hidden');
+  } else {
+    arrPhotos.forEach ((elem) => {
+      const newPhoto = document.createElement('img');
+      newPhoto.className = 'popup__photo';
+      newPhoto.src = elem;
+      newPhoto.width = '45';
+      newPhoto.height = '45';
+      newPhoto.alt = 'Фотография жилья';
+      photosPopup.appendChild(newPhoto);
+    })
+    return photosPopup;
+  }
 }
 
 const createofferCard = function ({author, offer}) {
 
   titlePopup.textContent = offer.title;
   addressPopup.textContent = offer.address;
-  pricePopup.textContent = offer.price;
+  pricePopup.textContent = `${offer.price} ₽/ночь`;
   checkPopup.textContent = `Заезд после ${offer.chekin}, выезд до ${offer.checkout}`;
   descriptionPopup.textContent = offer.description;
   typePopup.textContent = redefineType(offer.type);
