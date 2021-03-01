@@ -53,7 +53,7 @@ const createOffer = function () {
   const Y = getRandomFloatInclusive(LONGITUDE_MIN, LONGITUDE_MAX, ACCURACY);
   const ad = {
     author: {
-      avatar: `img/avatar/user0${getRandomIntegerInclusive(USER_NUMBER_MIN, USER_NUMBER_MAX)}.png`,
+      avatar: `img/avatars/user0${getRandomIntegerInclusive(USER_NUMBER_MIN, USER_NUMBER_MAX)}.png`,
     },
     offer: {
       title: TITLE,
