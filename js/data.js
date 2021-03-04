@@ -21,6 +21,7 @@ const LONGITUDE_MAX = 139.80000;
 const ACCURACY = 5;
 const OFFERS_COUNT = 10;
 
+
 const HOUSE_TYPES = [
   'palace',
   'flat',
@@ -74,7 +75,6 @@ const createOffer = function () {
   }
   return ad;
 }
-
 const similarOffers = new Array(OFFERS_COUNT).fill(null).map(() => createOffer());
 
 export {

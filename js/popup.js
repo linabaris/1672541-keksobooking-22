@@ -32,8 +32,8 @@ const genFeatures = function (arrFeatures) {
   if (arrFeatures.length === 0) {
     featuresPopup.classList.add('visvisually-hidden')
   } else {
-
     arrFeatures.forEach((elem) => {
+
       const newFeature = document.createElement('li');
       newFeature.className = `popup__feature popup__feature--${elem}`;
       featuresPopup.appendChild(newFeature);
@@ -46,11 +46,13 @@ const genPhotos = function (arrPhotos) {
   const photosPopup = cardElement.querySelector('.popup__photos');
   photosPopup.innerHTML = '';
 
+
   if (arrPhotos.length === 0) {
     photosPopup.classList.add('visually-hidden');
   } else {
 
     arrPhotos.forEach((elem) => {
+
       const newPhoto = document.createElement('img');
       newPhoto.className = 'popup__photo';
       newPhoto.src = elem;
