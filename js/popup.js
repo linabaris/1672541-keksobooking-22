@@ -11,15 +11,16 @@ const checkPopup = cardElement.querySelector('.popup__text--time');
 const descriptionPopup = cardElement.querySelector('.popup__description');
 const avatarPopup = cardElement.querySelector('.popup__avatar');
 
+
 const redefineType = function (type) {
   switch (type) {
-    case 'palace' :
+    case 'palace':
       return 'Дворец';
-    case 'flat' :
+    case 'flat':
       return 'Квартира';
-    case 'house' :
+    case 'house':
       return 'Дом';
-    case 'bungalow' :
+    case 'bungalow':
       return 'Бунгало';
   }
 }
@@ -27,11 +28,12 @@ const redefineType = function (type) {
 const genFeatures = function (arrFeatures) {
   const featuresPopup = cardElement.querySelector('.popup__features');
   featuresPopup.innerHTML = '';
-  
+
   if (arrFeatures.length === 0) {
-    featuresPopup.classList.add('visvisually-hidden');
+    featuresPopup.classList.add('visvisually-hidden')
   } else {
-    arrFeatures.forEach ((elem) => {
+    arrFeatures.forEach((elem) => {
+
       const newFeature = document.createElement('li');
       newFeature.className = `popup__feature popup__feature--${elem}`;
       featuresPopup.appendChild(newFeature);
@@ -43,11 +45,14 @@ const genFeatures = function (arrFeatures) {
 const genPhotos = function (arrPhotos) {
   const photosPopup = cardElement.querySelector('.popup__photos');
   photosPopup.innerHTML = '';
-  
+
+
   if (arrPhotos.length === 0) {
     photosPopup.classList.add('visually-hidden');
   } else {
-    arrPhotos.forEach ((elem) => {
+
+    arrPhotos.forEach((elem) => {
+
       const newPhoto = document.createElement('img');
       newPhoto.className = 'popup__photo';
       newPhoto.src = elem;
@@ -60,11 +65,11 @@ const genPhotos = function (arrPhotos) {
   }
 }
 
-const createofferCard = function ({author, offer}) {
+const createOfferCard = function ({ author, offer }) {
 
   titlePopup.textContent = offer.title;
   addressPopup.textContent = offer.address;
-  pricePopup.textContent = `${offer.price} ₽/ночь`;
+  pricePopup.textContent = offer.price;
   checkPopup.textContent = `Заезд после ${offer.chekin}, выезд до ${offer.checkout}`;
   descriptionPopup.textContent = offer.description;
   typePopup.textContent = redefineType(offer.type);
@@ -79,5 +84,5 @@ const createofferCard = function ({author, offer}) {
 }
 
 export {
-  createofferCard
+  createOfferCard
 }

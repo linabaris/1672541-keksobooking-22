@@ -78,5 +78,6 @@ const createOffer = function () {
 const similarOffers = new Array(OFFERS_COUNT).fill(null).map(() => createOffer());
 
 export {
-  similarOffers
+  similarOffers,
+  ACCURACY
 }

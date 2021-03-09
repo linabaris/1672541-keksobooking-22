@@ -1,6 +1,13 @@
-import {createofferCard} from './popup.js'
-import {similarOffers} from './data.js'
+/* global L:readonly */
+import {disableForm, enableForm} from './form.js'
+import { fillMap } from './map.js';
 
-const offersListElement = document.querySelector('.map__canvas');
+disableForm();
 
-offersListElement.appendChild(createofferCard(similarOffers[0]));
+const map = L.map('map-canvas')
+  .on('load', () => {enableForm()} )
+  .setView ({
+    lat: 35.68950,
+    lng: 139.69171,
+  }, 13);
+fillMap(map);
