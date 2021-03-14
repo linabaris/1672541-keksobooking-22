@@ -11,7 +11,9 @@ const titleInput = form.querySelector('#title');
 const houseInputPrice = form.querySelector('#price');
 const roomsNumber = form.querySelector('#room_number');
 const guestsNumber = form.querySelector('#capacity');
-
+const houseType = form.querySelector('#type');
+const timeIn = form.querySelector('#timein');
+const timeOut = form.querySelector('#timeout');
 
 const fillAddress = function ({lat, lng}) {
   const lattitude = lat.toFixed(ACCURACY);
@@ -51,6 +53,32 @@ const enableForm = function () {
   activateForm(mapFilters, mapFiltersElement);
   activateForm(form, formElement);
 }
+// user input processing logic
+
+const housingPrice = {
+  bungalow: 0,
+  flat: 1000,
+  house: 5000,
+  palace: 10000,
+}
+
+const changeMinPrice = function () {
+  const minPrice = housingPrice[houseType.value];
+  houseInputPrice.placeholder = minPrice;
+  houseInputPrice.min = minPrice;
+}
+
+houseType.addEventListener('change', function() {
+  changeMinPrice ();
+})
+
+// sync timeIn and timeOut
+timeIn.addEventListener('change', function() {
+  timeOut.value = timeIn.value;
+})
+timeOut.addEventListener('change', function() {
+  timeIn.value = timeOut.value;
+})
 
 // validate title field
 
