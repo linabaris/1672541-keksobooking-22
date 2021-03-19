@@ -1,12 +1,16 @@
 import {ACCURACY} from './data.js'
-// inactive state of the card
+
+const MAX_INPUT_PRICE = 1000000;
 
 const form = document.querySelector('.ad-form');
 const mapFilters = document.querySelector('.map__filters');
 const formElement = form.querySelectorAll('fieldset');
 const mapFiltersElement = mapFilters.querySelectorAll('select, fieldset');
 const address = form.querySelector('#address');
+const titleInput = form.querySelector('#title');
 const houseInputPrice = form.querySelector('#price');
+const roomsNumber = form.querySelector('#room_number');
+const guestsNumber = form.querySelector('#capacity');
 const houseType = form.querySelector('#type');
 const timeIn = form.querySelector('#timein');
 const timeOut = form.querySelector('#timeout');
@@ -18,6 +22,7 @@ const fillAddress = function ({lat, lng}) {
   address.value = `${lattitude} ${longitude}`;
 }
 
+// inactive state of the card
 let className = null;
 const changeClass = function () {
   formElement ? className = 'ad-form--disabled' : className = 'map__filters--disabled';
@@ -73,6 +78,50 @@ timeIn.addEventListener('change', function() {
 })
 timeOut.addEventListener('change', function() {
   timeIn.value = timeOut.value;
+})
+
+// validate title field
+titleInput.addEventListener('invalid', function() {
+  if (titleInput.validity.tooshort) {
+    titleInput.setCustomValidity('Заголовок должен состоять минимум из 30 символов');
+  } else if (titleInput.validity.tooLong) {
+    titleInput.setCustomValidity('Заголовок должен состоять максимум из 100 символов');
+  } else if (titleInput.validity.valueMissing) {
+    titleInput.setCustomValidity('Необходимо заполнить поле');
+  } else {
+    titleInput.setCustomValidity('');
+  }
+})
+
+//validate price field
+houseInputPrice.addEventListener('input', function() {
+  const valuePrice = Number.parseInt(houseInputPrice.value);
+  if (houseInputPrice.validity.valueMissing) {
+    houseInputPrice.setCustomValidity('Необходимо заполнить поле');
+  } else if (valuePrice > MAX_INPUT_PRICE) {
+    houseInputPrice.setCustomValidity('Превышено допустимое значение цены');
+  } else {
+    houseInputPrice.setCustomValidity('');
+  }
+})
+
+//sync rooms and guests number
+const setLimitGuests = function() {
+  if (Number.parseInt(roomsNumber.value) < Number.parseInt(guestsNumber.value)) {
+    guestsNumber.setCustomValidity('Число гостей не должно превышать число комнат');
+  } else if (roomsNumber.value !== '100' && guestsNumber.value === '0') {
+    guestsNumber.setCustomValidity('Вариант не для гостей подходит только для 100 комнат');
+  } else if (roomsNumber.value === '100' && guestsNumber.value !== '0') {
+    guestsNumber.setCustomValidity('Такому количеству комнат соответсвует вариант не для гостей');
+  } else {
+    guestsNumber.setCustomValidity('');
+  }
+}
+guestsNumber.addEventListener('change', function() {
+  setLimitGuests();
+})
+roomsNumber.addEventListener('change', function() {
+  setLimitGuests();
 })
 
 export {

@@ -2,6 +2,11 @@ import { similarOffers } from './data.js';
 import { createOfferCard } from './popup.js';
 import { fillAddress } from './form.js'
 
+const defaultCoords = {
+  lat: 35.68950,
+  lng: 139.69171,
+}
+
 /* global L:readonly */
 const fillMap = function (map) {
   L.tileLayer(
@@ -29,12 +34,13 @@ const fillMap = function (map) {
   );
   mainMarker.addTo(map);
 
+  fillAddress(defaultCoords);
   const onMove = function (evt) {
-    const addressLoc = {
+    const address = {
       lat: evt.target.getLatLng().lat,
       lng: evt.target.getLatLng().lng,
     }
-    fillAddress(addressLoc);
+    fillAddress(address);
   }
 
   mainMarker.on('move', onMove);
