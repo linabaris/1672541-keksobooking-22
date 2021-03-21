@@ -14,8 +14,8 @@ const redefineType = function (type) {
 }
 
 const createOfferCard = function ({ author, offer }) {
-  const cardElement = offersTemplate.cloneNode(true);
 
+  const cardElement = offersTemplate.cloneNode(true);
 
   cardElement.querySelector('.popup__title').textContent = offer.title;
   cardElement.querySelector('.popup__text--address').textContent = offer.address;
@@ -51,7 +51,6 @@ const createOfferCard = function ({ author, offer }) {
     if (arrPhotos.length === 0) {
       photosPopup.classList.add('visually-hidden');
     } else {
-
       arrPhotos.forEach((elem) => {
 
         const newPhoto = document.createElement('img');
