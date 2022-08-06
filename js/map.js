@@ -1,7 +1,5 @@
-import { getServerData } from './server.js'
 import { createOfferCard } from './popup.js';
 import { fillAddress, disableForm, enableForm } from './form.js'
-import { showAlert } from './util.js'
 
 disableForm();
 
@@ -52,13 +50,9 @@ const onMove = function (evt) {
 
 mainMarker.on('move', onMove);
 
-const generatePins = async function () {
-  let offersArr = [];
-  try {
-    offersArr = await getServerData();
-  } catch (err) {
-    showAlert('При загрузке данных с сервера произошла ошибка');
-  }
+
+let markersArr = [];
+const generatePins = (offersArr) => {
 
   offersArr.forEach((elem) => {
     const icon = L.icon({
@@ -68,23 +62,25 @@ const generatePins = async function () {
     });
     const lat = elem.location.lat;
     const lng = elem.location.lng;
-    const marker = L.marker({
+    const pin = L.marker({
       lat,
       lng,
     }, {
       icon,
     });
-
-    marker
+    markersArr.push(pin);
+    pin
       .addTo(map)
       .bindPopup(
         createOfferCard(elem), {
           keepInView: true,
+          closeOnEscapeKey: true,
         },
       );
   });
 }
-generatePins();
+
+
 
 const resetMap = function () {
   map.setView({
@@ -97,4 +93,5 @@ const resetMap = function () {
   });
 }
 
-export { resetMap }
+
+export { resetMap, generatePins, markersArr }

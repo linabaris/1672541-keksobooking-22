@@ -7,8 +7,10 @@ const MAX_INPUT_PRICE = 1000000;
 
 const form = document.querySelector('.ad-form');
 const mapFilters = document.querySelector('.map__filters');
-const formElement = form.querySelectorAll('fieldset');
 const mapFiltersElement = mapFilters.querySelectorAll('select, fieldset');
+
+
+const formElement = form.querySelectorAll('fieldset');
 const address = form.querySelector('#address');
 const titleInput = form.querySelector('#title');
 const houseInputPrice = form.querySelector('#price');
@@ -18,6 +20,7 @@ const houseType = form.querySelector('#type');
 const timeIn = form.querySelector('#timein');
 const timeOut = form.querySelector('#timeout');
 const resetButton = form.querySelector('.ad-form__reset');
+
 const mainBlock = document.querySelector('main');
 const successMessage = document.querySelector('#success').content;
 const errorMessage = document.querySelector('#error').content;
@@ -78,7 +81,7 @@ const enableForm = function () {
 }
 
 // user input processing logic
-const housingPrice = {
+const housingPrices = {
   bungalow: 0,
   flat: 1000,
   house: 5000,
@@ -86,7 +89,7 @@ const housingPrice = {
 }
 
 const changeMinPrice = function () {
-  const minPrice = housingPrice[houseType.value];
+  const minPrice = housingPrices[houseType.value];
   houseInputPrice.placeholder = minPrice;
   houseInputPrice.min = minPrice;
 }
@@ -198,5 +201,6 @@ setFormSubmit();
 export {
   disableForm,
   enableForm,
-  fillAddress
+  fillAddress,
+  mapFilters
 }

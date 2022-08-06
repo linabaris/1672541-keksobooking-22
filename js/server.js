@@ -1,6 +1,12 @@
-const getServerData = function () {
+const getServerData = function (getDataSuccsess, getDataFail) {
   return fetch('https://22.javascript.pages.academy/keksobooking/data')
     .then((response) => response.json())
+    .then((data) => {
+      getDataSuccsess(data);
+    })
+    .catch (() => {
+      getDataFail();
+    })
 };
 
 const sendData = function (onSuccess, onFail, body) {
