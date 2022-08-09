@@ -56,7 +56,7 @@ const checkHousingFeatures = function (card) {
   }
 
   for (const feature of checkedFeatures) {
-    if (!card.offer.features.includes(feature)) {
+    if (!card.offer.features.includes(feature.value)) {
       return false;
     }
   }

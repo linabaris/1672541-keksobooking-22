@@ -15,7 +15,7 @@ const redefineType = function (type) {
 
 const createOfferCard = function ({ author, offer }) {
 
-  const cardElement = offersTemplate.cloneNode(true);
+  const cardElement = offersTemplate.cloneNode(true).querySelector('.popup');
 
   cardElement.querySelector('.popup__title').textContent = offer.title;
   cardElement.querySelector('.popup__text--address').textContent = offer.address;
