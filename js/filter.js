@@ -1,4 +1,3 @@
-
 import { generatePins, markersArr} from './map.js';
 import { mapFilters } from './form.js'
 
@@ -13,7 +12,7 @@ const HIGH_PRICE = 'high';
 const LOW_PRICE = 'low';
 const MIDDLE_PRICE = 'middle';
 const NOT_SELECTED = 'any';
-// const RENDER_DELAY = 500;
+const RENDER_DELAY = 500;
 
 const PRICE_LIST = {
   high: 50000,
@@ -32,7 +31,7 @@ const checkHousingRooms = function (card) {
 }
 
 const checkHousingGuests = function (card) {
-  return housingGuests.value == card.offer.guests || housingGuests.value === 'any';
+  return housingGuests.value <= card.offer.guests || housingGuests.value === 'any';
 }
 
 const checkHousingPrice = function (card) {
@@ -78,12 +77,30 @@ const filterAllParametrs = (offersArr) => {
   return filterOffersArr;
 }
 
-const updateOffersMap = (data) => {
+/* global _:readonly */
+
+// const filterAllParametrs = _.debounce((offersArr) => { // используя ф-ию debounce в filterAllParameters вызов generatePins происходит раньше, чем в-тся фильтрация, т.о.filteredOffers пустой
+//   let filterOffersArr = [];
+
+//   for (let card of offersArr) {
+//     if (checkHousingGuests(card) &&
+//     checkHousingPrice(card) &&
+//     checkHousingType(card) &&
+//     checkHousingRooms(card) &&
+//     checkHousingFeatures(card)) {
+//       filterOffersArr.push(card);
+//     }
+//   }
+//   return filterOffersArr;
+
+// }, 0)
+
+const updateOffersMap = _.debounce((data) => {
   markersArr.forEach((marker) => marker.remove());
   const filteredOffers = filterAllParametrs(data);
   generatePins(filteredOffers);
 
-}
+}, RENDER_DELAY)
 
 
 const setFilterOffers = (data) => {

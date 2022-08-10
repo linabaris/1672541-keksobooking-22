@@ -53,7 +53,6 @@ mainMarker.on('move', onMove);
 
 let markersArr = [];
 const generatePins = (offersArr) => {
-
   offersArr.forEach((elem) => {
     const icon = L.icon({
       iconUrl: 'img/pin.svg',
